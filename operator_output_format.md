@@ -143,3 +143,116 @@ The system should:
 The system should never automatically approve travel arrangements, legal guidance, safety claims, visa advice, customs guidance, medical advice, or regulated activities.
 
 When uncertain, the system should flag the issue for human review and recommend checking official sources.
+
+## Verified Sources and Candidate Links
+
+This section is used when the traveler request requires source-backed information.
+
+The goal is to reduce generic responses and help the operator verify recommendations before replying to the traveler.
+
+### When to Use This Section
+
+Use this section when the traveler asks about:
+
+```text
+Restaurants
+Cafés
+Bakeries
+Markets
+Museums
+Craft workshops
+Ceramics shops
+Silk or textile workshops
+Photo spots
+Neighborhoods
+Local experience locations
+Hotels or lodging areas
+Attractions
+Landmarks
+Specific dishes in specific cities
+```
+
+Example traveler request:
+
+```text
+Where can I find Bukhara-style somsa in Tashkent?
+```
+
+Expected operator-facing output:
+
+```text
+Verified sources and candidate links:
+Place recommendation source needed.
+
+Candidate places:
+1. Name:
+   Address:
+   Google Maps link:
+   Rating:
+   Review count:
+   Opening status:
+   Website or phone:
+   Why it may match:
+   Operator validation needed:
+
+2. Name:
+   Address:
+   Google Maps link:
+   Rating:
+   Review count:
+   Opening status:
+   Website or phone:
+   Why it may match:
+   Operator validation needed:
+```
+
+### If Maps Lookup Is Available
+
+If a Maps or Places API lookup is available, this section should include source-backed candidate places returned by the API.
+
+The bot should not invent place names.
+
+Each candidate should include a clickable map link when available.
+
+### If Maps Lookup Is Not Available
+
+If a Maps or Places API lookup is not available, this section should say:
+
+```text
+Maps lookup unavailable.
+
+Suggested operator search query:
+[query]
+
+Operator validation needed:
+Check current opening hours, recent reviews, location suitability, and whether the place actually matches the traveler’s requested experience.
+```
+
+### If No Place Lookup Is Needed
+
+If the traveler request does not require a place recommendation, this section can say:
+
+```text
+No place lookup needed.
+```
+
+### If Official-Source Review Is Needed
+
+If the traveler asks about official rules, safety, permits, visa, customs, drone use, restricted areas, photography rules, or filming rules, this section should not use Maps as the authority.
+
+Instead, it should say:
+
+```text
+Official-source review needed.
+
+The operator should check the relevant official source or site-specific authority before giving final guidance.
+```
+
+### Human Review Rule
+
+The operator must review candidate places before sending recommendations to the traveler.
+
+The bot should not claim that a place is verified unless it has been returned by a source and reviewed by a human operator.
+
+The bot should not automatically send place recommendations to travelers.
+
