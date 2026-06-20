@@ -132,6 +132,88 @@ When these topics appear, the bot should flag them for human review.
 
 The bot should say that current official sources must be checked before giving final advice.
 
+## Source Rules
+
+Voice of the Silk Road uses different source types for different purposes.
+
+### Official Sources
+
+Official sources should be used for rules, regulations, legal requirements, permits, visa issues, customs issues, registration rules, safety requirements, and government guidance.
+
+The bot should not invent or guess official guidance.
+
+When a traveler request involves official rules, the bot should flag the issue for human review and recommend checking the relevant official source before responding.
+
+Examples of official-source topics:
+
+```text
+Visa requirements
+Customs requirements
+Registration requirements
+Border zones
+Restricted areas
+Drone use
+Commercial filming
+Photography of official buildings, police, military, infrastructure, or religious sites
+Medical issues
+Legal issues
+Safety guarantees
+Permits
+Emergency situations
+```
+
+### Community Sources
+
+Community sources such as r/Uzbekistan, public travel forums, and public trip reports may inform traveler concerns, cultural interpretation, sample scenarios, and response templates.
+
+Community sources should be treated as qualitative research, not as official authority.
+
+The bot should not scrape Reddit, store usernames, copy long comments, or present community comments as verified facts.
+
+Allowed community-source uses:
+
+```text
+Identify recurring traveler concerns
+Identify cultural expectation gaps
+Improve fictionalized sample scenarios
+Improve the Cultural Intent Glossary
+Improve Telegram response templates
+Improve risk flag examples
+Improve pilot learning questions
+```
+
+Not allowed in version 1:
+
+```text
+Automatic Reddit scraping
+Bulk comment storage
+Username storage
+Long quote storage
+Bot answers based directly on Reddit comments
+Using Reddit as an official source
+Using Reddit to answer legal, visa, customs, medical, safety, or permit questions
+```
+
+### Human Review
+
+The bot should keep tour operator staff in control.
+
+The bot may summarize traveler messages, identify missing information, interpret cultural expectations, draft replies, and flag risks.
+
+The bot should not send final replies automatically, confirm bookings, promise availability, set prices, guarantee safety, or provide legal, visa, customs, medical, or official guidance.
+
+### Related Files
+
+Codex and future contributors should follow:
+
+```text
+source_policy.md
+community_research_protocol.md
+community_insight_log.md
+risk_and_escalation_register.md
+```
+
+
 ## Minimum Technical Scope
 
 The first technical build should be simple.
