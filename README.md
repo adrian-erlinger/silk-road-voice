@@ -152,3 +152,91 @@ Possible future features:
 ## Project Status
 
 Early concept and pilot-readiness design.
+
+## Run Locally
+
+This project includes a minimal Telegram bot scaffold for Version 1.
+
+The bot currently runs locally from a developer machine. It is not yet deployed to a server.
+
+### Requirements
+
+```text
+Python 3
+Telegram bot token from BotFather
+OpenAI API key
+```
+
+### Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/adrian-erlinger/silk-road-voice.git
+cd silk-road-voice
+```
+
+Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a private local environment file:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and add private credentials:
+
+```text
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+LLM_API_KEY=your_openai_api_key_here
+LLM_MODEL=gpt-4o-mini
+```
+
+Do not commit `.env` to GitHub.
+
+### Run the Bot
+
+Start the bot locally:
+
+```bash
+python3 bot.py
+```
+
+When the bot is running, Telegram messages sent to the bot will be processed by the local Python process.
+
+To stop the bot:
+
+```text
+Control + C
+```
+
+### Current Limitations
+
+Version 1 is a local prototype.
+
+It does not yet include:
+
+```text
+Cloud deployment
+Persistent database
+User accounts
+Voice-note intake
+Automatic traveler messaging
+Payment or booking management
+Official-rule lookup
+Reddit scraping or web scraping
+```
+
+The bot is designed for internal operator review only. Staff must review and edit any suggested reply before sending it to a traveler.
+
