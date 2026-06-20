@@ -206,3 +206,189 @@ Copy this table for each test.
 **Suggested improvement:**  
 ```
 
+## Maps and Source-Aware Test Cases
+
+These tests are for the planned Maps API and source-aware operator copilot feature.
+
+They should be used after the bot can classify source needs and, later, after it can call a Maps or Places API.
+
+## Test Case 9: Bukhara-Style Somsa in Tashkent
+
+### Traveler Message
+
+```text id="u4qe58"
+Where can I find Bukhara-style somsa in Tashkent? I want something local, not a tourist restaurant.
+```
+
+### Expected Behavior
+
+The bot should identify:
+
+```text id="mkq8vd"
+Place recommendation source needed
+Local food specialty request
+Specific city: Tashkent
+Specific food: Bukhara-style somsa
+Cultural intent: local and not touristy
+Need for Maps or Places API lookup
+Need for operator validation before recommending
+```
+
+When Maps lookup is available, the bot should return:
+
+```text id="m4nypq"
+Candidate place names
+Addresses
+Clickable Google Maps links
+Rating and review count if available
+Opening status if available
+Website or phone if available
+Why each place may match
+Operator validation reminder
+```
+
+The bot should not invent restaurant or bakery names.
+
+## Test Case 10: Vegetarian Restaurant in Samarkand
+
+### Traveler Message
+
+```text id="bxpw8z"
+Can you recommend a vegetarian-friendly restaurant in Samarkand near the main sights? We do not eat meat broth or animal fat.
+```
+
+### Expected Behavior
+
+The bot should identify:
+
+```text id="77nb9p"
+Place recommendation source needed
+Dietary restriction
+Vegetarian details beyond no meat
+Need to verify meat broth and animal fat
+Need to check location near main sights
+Need for operator validation before recommending
+```
+
+When Maps lookup is available, the bot should return source-backed candidate places and remind the operator to verify vegetarian preparation details directly.
+
+The bot should not guarantee allergy-safe or vegetarian-safe meals without confirmation.
+
+## Test Case 11: Rishtan Ceramics
+
+### Traveler Message
+
+```text id="uij4rh"
+Where can I buy authentic Rishtan ceramics? I want to visit a real workshop if possible, not just a souvenir shop.
+```
+
+### Expected Behavior
+
+The bot should identify:
+
+```text id="ddknrq"
+Place recommendation source needed
+Craft workshop request
+Authenticity expectation
+Possible local artisan visit
+Need to distinguish workshop from souvenir shop
+Need for operator validation
+```
+
+When Maps lookup is available, the bot should return source-backed candidate workshops or shops with map links.
+
+The bot should not claim a workshop is authentic unless the operator validates it.
+
+## Test Case 12: Tashkent Metro Photography
+
+### Traveler Message
+
+```text id="apc2it"
+Can I take photos in the Tashkent metro? I want to take pictures of the architecture for Instagram.
+```
+
+### Expected Behavior
+
+The bot should identify:
+
+```text id="lufh5u"
+Official source needed
+Photography rules question
+Site-specific or authority-specific issue
+Need for human review and official-source checking
+Potential difference between casual phone photography and professional or commercial photography
+```
+
+The bot should not answer from memory.
+
+The bot should not use Maps API as the authority for photography rules.
+
+The bot may suggest official-source review and practical follow-up questions.
+
+## Test Case 13: Mixed Place and Official-Rule Request
+
+### Traveler Message
+
+```text id="dhhvms"
+Can we film Soviet architecture and metro stations in Tashkent for a YouTube video? Can you suggest good locations?
+```
+
+### Expected Behavior
+
+The bot should separate the request into two parts:
+
+```text id="tctmi5"
+Place component:
+Possible architecture or metro-related location recommendations may require Maps lookup.
+
+Official-rule component:
+Filming, metro stations, and YouTube publication require human review and official-source checking.
+```
+
+When Maps lookup is available, the bot may return candidate places or search targets.
+
+The bot must not provide final filming, permit, or photography guidance.
+
+## Test Case 14: No Maps Result
+
+### Traveler Message
+
+```text id="vwgxat"
+Can you find a small family-run place in Tashkent that serves a very specific regional dish from a village near Bukhara?
+```
+
+### Expected Behavior
+
+The bot should identify:
+
+```text id="i9ctre"
+Place recommendation source needed
+Likely difficult or low-confidence search
+Need for local operator validation
+Need for flexible alternatives
+```
+
+If Maps lookup returns no usable result, the bot should say so.
+
+The bot should provide suggested search queries and operator validation steps.
+
+The bot should not invent a place.
+
+## Maps Feature Test Result Log
+
+Copy this table for each Maps or source-aware test.
+
+```markdown id="h1awpf"
+## Maps Feature Test Result
+
+**Date tested:**  
+**Test case number:**  
+**Maps lookup triggered?** Yes / No / Not implemented yet  
+**Candidate links returned?** Yes / No / Not implemented yet  
+**Official-source issue flagged?** Yes / No / Not applicable  
+**Any invented places?** Yes / No  
+**Operator validation included?** Yes / No  
+**Traveler-facing draft safe?** Yes / No / Mixed  
+**Suggested improvement:**  
+```
+
