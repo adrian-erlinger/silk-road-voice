@@ -383,3 +383,205 @@ The response flags sensitive issues.
 The response drafts a usable Telegram reply.
 The system avoids final legal, safety, visa, customs, and medical advice.
 ```
+
+## Future Capability: Source-Aware Operator Copilot
+
+Version 1 began as a traveler request intake assistant.
+
+The next product direction is to make the bot a source-aware operator copilot. The bot should not only summarize traveler requests. It should identify what information the operator needs, what source type is appropriate, and when source-backed lookup is required.
+
+## Why This Matters
+
+Generic outputs are not enough for tour operators.
+
+If a traveler asks:
+
+```text
+Can I take photos in the Tashkent metro?
+```
+
+the bot should not simply say:
+
+```text
+Check the latest regulations.
+```
+
+It should identify that this is an official-rule question and tell the operator what kind of source must be checked before responding.
+
+If a traveler asks:
+
+```text
+Where can I find Bukhara-style somsa in Tashkent?
+```
+
+the bot should not invent a restaurant or bakery.
+
+It should identify that this is a place recommendation request and, when Maps API lookup is available, return source-backed candidate places with clickable links.
+
+## Source-Aware Request Types
+
+The bot should classify traveler requests into one or more of these categories:
+
+```text
+No source needed
+Official source needed
+Place recommendation source needed
+Community insight useful
+Operator validation needed
+```
+
+## Official-Source Requests
+
+Official-source requests include:
+
+```text
+Visa rules
+Customs rules
+Registration rules
+Photography rules
+Drone use
+Commercial filming
+Border areas
+Restricted zones
+Permits
+Safety guarantees
+Legal issues
+Medical issues
+```
+
+For these requests, the bot should:
+
+```text
+Flag official-source review
+Avoid final guidance from memory
+Recommend checking the relevant official source or site-specific authority
+Ask practical follow-up questions
+Keep the human operator in control
+```
+
+## Place Recommendation Requests
+
+Place recommendation requests include:
+
+```text
+Restaurants
+Cafés
+Bakeries
+Markets
+Museums
+Craft workshops
+Ceramics shops
+Silk or textile workshops
+Photo spots
+Neighborhoods
+Attractions
+Landmarks
+Specific dishes in specific cities
+```
+
+For these requests, the future Maps API feature should:
+
+```text
+Call a place-search API
+Return source-backed candidate places
+Include clickable map links
+Include address, rating, review count, and opening status when available
+Explain why each candidate may match
+Include operator validation reminders
+Avoid invented places
+```
+
+## Planned Maps API Feature
+
+The first implementation should use Google Places API.
+
+The future code should add:
+
+```text
+GOOGLE_MAPS_API_KEY
+```
+
+as a private environment variable in `.env`.
+
+The key must not be committed to GitHub.
+
+The repo may include a placeholder in `.env.example` when implementation begins.
+
+## Future Output Section
+
+Future bot output should include:
+
+```text
+Verified sources and candidate links:
+```
+
+This section should appear before:
+
+```text
+Risk or compliance flags:
+```
+
+For place recommendation requests, it should include API-returned candidate places.
+
+For official-rule requests, it should state that official-source review is needed.
+
+For requests that do not need source-backed lookup, it can state:
+
+```text
+No place lookup needed.
+```
+
+## Human Review Rule
+
+The bot should return source-backed candidates to the operator.
+
+The bot should not automatically send place recommendations to travelers.
+
+The operator must review candidate places before sending them to a traveler.
+
+The operator should verify:
+
+```text
+Current opening hours
+Recent reviews
+Location suitability
+Food quality
+Whether the place actually matches the traveler’s requested experience
+Dietary fit
+Accessibility
+Group-size suitability
+Traveler comfort level
+Local guide confidence
+```
+
+## No Hallucinated Places Rule
+
+The bot must not invent restaurant names, shop names, museum names, workshop names, or local recommendations.
+
+If no API result is available, the bot should say so.
+
+If the Maps API fails, the bot should still provide normal intake analysis and a suggested operator search query.
+
+## Implementation Sequence
+
+Recommended implementation order:
+
+```text
+1. Add Maps API feature spec
+2. Update source policy and output format
+3. Add source-need classification
+4. Add Maps/source-aware test cases
+5. Add GOOGLE_MAPS_API_KEY placeholder to .env.example
+6. Add a place-search helper module
+7. Add request classification for place recommendation needs
+8. Call Google Places API for local recommendation requests
+9. Return 3 candidate places with Google Maps links
+10. Test against Maps and source-aware test cases
+```
+
+## Product Principle
+
+The bot should become more useful by becoming more source-aware, not by becoming more confident.
+
+The operator should receive better evidence, better links, better questions, and better validation prompts.
+
