@@ -245,3 +245,120 @@ Should record human-reviewed themes from community sources without storing usern
 ## Product Principle
 
 The project should use community knowledge to understand people better, not to replace official sources or human judgment.
+
+
+## Place Discovery Sources
+
+Place discovery sources are used for local recommendation requests.
+
+Examples include:
+
+```text id="df660v"
+Restaurants
+Cafés
+Bakeries
+Markets
+Museums
+Craft workshops
+Ceramics shops
+Silk or textile workshops
+Photo spots
+Neighborhoods
+Local experience locations
+Hotels or lodging areas
+Attractions
+Landmarks
+Specific dishes in specific cities
+```
+
+Place discovery sources may include:
+
+```text id="o3zfyw"
+Google Places API
+Google Maps links
+Yandex Maps or business search in a future version
+Operator-vetted local lists
+Local guide validation
+```
+
+Place discovery sources can help the operator identify candidate places, but they should not replace human review.
+
+## Place Recommendation Rule
+
+The bot should not invent place recommendations from model memory.
+
+If the traveler asks for a place recommendation, the bot should use a source-backed lookup when available.
+
+A source-backed place candidate should include:
+
+```text id="4mcfi0"
+Place name
+Address
+Clickable map link
+Rating if available
+Review count if available
+Opening status if available
+Website or phone if available
+Reason it may match the traveler request
+Operator validation reminder
+```
+
+The bot may explain why a place may match the traveler’s request, but the bot should not claim the place is verified unless it was returned by a source and reviewed by a human operator.
+
+## Operator Validation for Place Recommendations
+
+Before sending a place recommendation to a traveler, the operator should verify:
+
+```text id="91zuvu"
+Current opening hours
+Recent reviews
+Location suitability
+Food quality
+Whether the place actually offers the requested dish or experience
+Dietary fit
+Accessibility
+Group-size suitability
+Traveler comfort level
+Local guide confidence
+```
+
+The bot should return candidate places for operator review.
+
+The bot should not automatically send place recommendations to travelers.
+
+## Maps API Boundary
+
+Maps or Places APIs should be used for place discovery.
+
+They should not be used as the authority for official rules.
+
+Examples of questions that require official-source review instead of Maps authority:
+
+```text id="8ci9gx"
+Can I take photos in the Tashkent metro?
+Do I need a permit to film?
+Can I fly a drone?
+Can I enter a restricted area?
+What are the visa rules?
+What are the customs rules?
+Do I need registration?
+```
+
+For mixed requests, the bot should separate the place-discovery component from the official-rule component.
+
+Example:
+
+```text id="ee0e1j"
+Can I film Soviet architecture and metro stations in Tashkent?
+```
+
+The bot may identify relevant places, but filming and photography rules must still be flagged for human review and official-source checking.
+
+## No Hallucinated Places Rule
+
+If no place lookup is available, or if the Maps API returns no usable result, the bot should say so.
+
+The bot may provide search queries for operator follow-up.
+
+The bot should not invent restaurant names, shop names, attraction names, or local recommendations.
+

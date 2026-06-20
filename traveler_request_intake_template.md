@@ -318,3 +318,135 @@ The system should:
 * Keep human staff in control
 * Format replies for Telegram use
 * Support fast review by operators under time pressure
+
+## Source Need
+
+This section identifies whether the traveler request needs source-backed information.
+
+The bot should classify the request into one or more source-need categories.
+
+## Source Need Categories
+
+```text
+No source needed
+Official source needed
+Place recommendation source needed
+Community insight useful
+Operator validation needed
+```
+
+## When No Source Is Needed
+
+Use this when the traveler request can be handled through normal intake and clarification.
+
+Examples:
+
+```text
+We want a five-day cultural trip.
+We are interested in food and architecture.
+We prefer a private guide.
+We are vegetarian.
+```
+
+## When an Official Source Is Needed
+
+Use this when the traveler asks about rules, permissions, safety, legal issues, medical issues, or government requirements.
+
+Examples:
+
+```text
+Can I take photos in the Tashkent metro?
+Do I need a filming permit?
+Can I fly a drone?
+Do I need a visa?
+Do I need registration?
+Can I bring medicine through customs?
+Can I visit a border area?
+```
+
+The bot should not provide final guidance from memory.
+
+The bot should flag official-source review and human operator review.
+
+## When a Place Recommendation Source Is Needed
+
+Use this when the traveler asks for a specific place, local recommendation, food stop, shop, market, café, restaurant, museum, workshop, or attraction.
+
+Examples:
+
+```text
+Where can I find Bukhara-style somsa in Tashkent?
+Can you recommend a vegetarian restaurant in Samarkand?
+Where can I buy Rishtan ceramics?
+Is there a good tea house near Registan?
+Where can I find a local bakery in Bukhara?
+```
+
+The bot should use a source-backed lookup when available.
+
+Future versions should call a Maps or Places API and return candidate links for operator review.
+
+## When Community Insight Is Useful
+
+Use this when the traveler expresses anxiety, uncertainty, or expectation gaps that are common in travel forums or public discussions.
+
+Examples:
+
+```text
+Is Uzbekistan safe for a first-time traveler?
+Will I be able to get around with only English?
+How do I avoid scams?
+Is this itinerary too rushed?
+Can I meet locals without being intrusive?
+```
+
+Community insight should inform cultural interpretation and response framing.
+
+Community insight should not replace official sources or human review.
+
+## When Operator Validation Is Needed
+
+Use this when the traveler asks for something that depends on local availability, partner quality, pricing, routing, staffing, or real-time feasibility.
+
+Examples:
+
+```text
+Can you arrange women-led experiences?
+Can you find a real homestay?
+Can we meet local artisans?
+Can we get private access?
+Can you arrange meals for a severe allergy?
+Can you confirm a guide who speaks Korean?
+```
+
+The bot should tell the operator what must be checked before promising anything to the traveler.
+
+## Source Need Output
+
+The bot should include source need analysis in the operator-facing output.
+
+Recommended structure:
+
+```text
+Source need:
+- Place recommendation source needed
+- Operator validation needed
+
+Why:
+The traveler asks for a specific local food experience in a specific city. Candidate places should come from a source-backed lookup and then be reviewed by local staff.
+
+Suggested lookup:
+Bukhara somsa Tashkent
+
+Operator validation:
+Check current opening hours, recent reviews, location suitability, and whether the place actually serves the requested dish.
+```
+
+## Product Principle
+
+Source need classification should make the bot more useful and less generic.
+
+The bot should not merely repeat the traveler’s words.
+
+It should identify what the operator needs to verify, where the information should come from, and what can safely be drafted for the traveler.
+

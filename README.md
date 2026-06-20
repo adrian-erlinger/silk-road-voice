@@ -201,6 +201,7 @@ Edit `.env` and add private credentials:
 TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
 LLM_API_KEY=your_openai_api_key_here
 LLM_MODEL=gpt-4o-mini
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 ```
 
 Do not commit `.env` to GitHub.
@@ -236,6 +237,7 @@ Automatic traveler messaging
 Payment or booking management
 Official-rule lookup
 Reddit scraping or web scraping
+Maps API place lookup is planned but not yet implemented
 ```
 
 The bot is designed for internal operator review only. Staff must review and edit any suggested reply before sending it to a traveler.
