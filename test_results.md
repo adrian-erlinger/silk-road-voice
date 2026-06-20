@@ -100,3 +100,80 @@ Add voice-note transcription
 Add official-source reference list
 ```
 
+## Operator Language Selection Test
+
+**Date tested:** 2026-06-20
+**Tester:** Adrian Erlinger
+**Environment:** Local Mac development environment
+**Branch tested:** `feature/operator-language-selection`, merged into `main`
+**Bot status:** Ran locally through `python3 bot.py`
+
+## Summary
+
+The operator language selection feature passed manual testing.
+
+The bot now supports short language commands:
+
+```text
+/language EN
+/language UZ
+/language RU
+/language TJ
+```
+
+The bot also supports lowercase versions and full-name aliases.
+
+## Test Results
+
+| Test                                                                  | Result |
+| --------------------------------------------------------------------- | ------ |
+| `/start` shows onboarding in English, Uzbek Latin, Russian, and Tajik | Passed |
+| `/help` shows short language commands                                 | Passed |
+| `/language EN` sets English output                                    | Passed |
+| `/language UZ` sets Uzbek Latin output                                | Passed |
+| `/language RU` sets Russian output                                    | Passed |
+| `/language TJ` sets Tajik output                                      | Passed |
+| Lowercase command `/language uz` works                                | Passed |
+| Legacy full-name commands still work                                  | Passed |
+| Language confirmation messages are localized                          | Passed |
+| Operator-facing headings change to selected language                  | Passed |
+| Operator-facing analysis changes to selected language                 | Passed |
+| Traveler-facing draft remains in the traveler’s detected language     | Passed |
+
+## Key Product Decision
+
+The bot now separates two language layers:
+
+```text
+Operator-facing language:
+Controlled by /language EN, /language UZ, /language RU, or /language TJ.
+
+Traveler-facing reply language:
+Detected from the traveler’s original message.
+```
+
+This means a tour operator can work in Uzbek Latin, Russian, or Tajik while still producing a traveler-facing draft in the traveler’s language.
+
+## Current Status
+
+The language-selection feature is suitable for continued local testing on `main`.
+
+It is not yet suitable for public deployment.
+
+## Next Testing Priorities
+
+Future tests should evaluate:
+
+```text
+French traveler message with Uzbek operator output
+German traveler message with Russian operator output
+Italian traveler message with Tajik operator output
+Japanese traveler message with English operator output
+Korean traveler message with Uzbek operator output
+Chinese traveler message with Russian operator output
+Mixed-language traveler messages
+Poorly written traveler messages
+Long Telegram messages
+Safety-sensitive messages in non-English languages
+```
+
